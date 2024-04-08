@@ -2,6 +2,7 @@ package com.example.proj13;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,8 +16,10 @@ public class MainActivity extends AppCompatActivity
     TextView tvx1, tvx2;
     EditText edA, edB, edC;
     ImageView func;
-    int a, b, c, ans1,ans2;
+    double a, b, c, ans1,ans2;
+    String inputA,inputB,inputC;
 
+    //----------------------------------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,6 +34,34 @@ public class MainActivity extends AppCompatActivity
         func = (ImageView) findViewById(R.id.imageView);
     }
 
+    //----------------------------------------------------------------
+    public boolean valid(String input)
+    {
+        if (input.isEmpty())
+        {
+            return false;
+        }
+        else if (input.length() == 1)
+        {
+            char firstChar = input.charAt(0);
+            if (firstChar == '.' || firstChar == '-')
+            {
+                return false;
+            }
+        }
+        else
+        {
+            char firstChar = input.charAt(0);
+            char lastChar = input.charAt(input.length() - 1);
+            if (lastChar == '.' || lastChar == '-' || firstChar == '.')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    //----------------------------------------------------------------
+
     public void generate(View view)
     {
         Random rnd = new Random();
@@ -41,9 +72,25 @@ public class MainActivity extends AppCompatActivity
         edB.setText(String.valueOf(b));
         edC.setText(String.valueOf(c));
     }
+    //----------------------------------------------------------------
+
 
 
     public void moveToSecView(View view)
     {
+        inputA = edA.getText().toString();
+        inputB = edB.getText().toString();
+        inputC = edC.getText().toString();
+        if ((valid(inputA)) && (valid(inputB)) && (valid(inputC)))
+        {
+            a = Integer.parseInt(inputA);
+            b = Integer.parseInt(inputB);
+            c = Integer.parseInt(inputC);
+            Intent warp = new Intent(this, theMathFormulaCalculator.class);
+            warp.putExtra("a value", a);
+            warp.putExtra("b value", b);
+            warp.putExtra("c value", c);
+            startActivity(warp);
+        }
     }
 }
