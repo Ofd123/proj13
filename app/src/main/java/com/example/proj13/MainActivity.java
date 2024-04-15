@@ -97,11 +97,13 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    public void moveToSecView(View view) {
+    public void moveToSecView(View view)
+    {
         inputA = edA.getText().toString();
         inputB = edB.getText().toString();
         inputC = edC.getText().toString();
-        if ((valid(inputA)) && (valid(inputB)) && (valid(inputC))) {
+        if ((valid(inputA)) && (valid(inputB)) && (valid(inputC)))
+        {
             a = Double.parseDouble(inputA);
             b = Double.parseDouble(inputB);
             c = Double.parseDouble(inputC);
@@ -112,7 +114,6 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(warp, secretCode);
         }
     }
-
 
 
 }

@@ -31,7 +31,7 @@ public class theMathFormulaCalculator extends AppCompatActivity
         Intent secPhase = getIntent();
         a = secPhase.getDoubleExtra("a value", 0);
         b = secPhase.getDoubleExtra("b value", 0);
-        c = secPhase.getDoubleExtra("c value", 1);
+        c = secPhase.getDoubleExtra("c value", 0);
 
         X1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
         X2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
